@@ -1,8 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import img from "../../public/Path.png"
-import mainImg from "../../public/person.png"
-import bush from "../../public/bushes@2x.png"
+
 
 function HeroSection() {
   return (
