@@ -1,4 +1,4 @@
-import guideimg from "./../assets/about3.png";
+import guideimg from "./../assets/image copy 2.png";
 
 const GuideSection = () => {
   const guides = [
