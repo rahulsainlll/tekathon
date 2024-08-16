@@ -14,7 +14,7 @@ const images = [
 
 const Collaboration = () => {
   return (
-    <section className="relative py-12">
+    <section className="relative py-12 mb-28">
       <div className="text-center mb-8">
         <h2 className="font-mono text-3xl font-bold">
           Collaboration Clubs and Partners
