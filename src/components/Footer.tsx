@@ -1,10 +1,11 @@
 import { Instagram, Mail } from "lucide-react";
+import footerimg from "./../assets/footer.png";
 
 const Footer = () => {
   return (
     <footer
       className="relative bg-cover py-3 bg-center sm:py-20 text-white"
-      style={{ backgroundImage: "url('/src/assets/footer.png')" }}
+      style={{ backgroundImage: `url(${footerimg})` }}
     >
       <div className="container mx-auto text-center">
         <h2 className="text-xl mb-4">

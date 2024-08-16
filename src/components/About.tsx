@@ -1,3 +1,6 @@
+import about1 from "./../assets/aboutimg1.png";
+import about2 from "./../assets/about3.png";
+
 function About() {
   return (
     <section className="bg-white py-16">
@@ -27,18 +30,14 @@ function About() {
         </div>
 
         <div className="md:w-1/2">
-          <img
-            src="src/assets/aboutimg1.png"
-            alt="TEKATHON 3.0"
-            className="w-full h-auto"
-          />
+          <img src={about1} alt="TEKATHON 3.0" className="w-full h-auto" />
         </div>
       </div>
 
       <div className="container mx-auto flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8 order-2 md:order-1">
           <img
-            src="/src/assets/about3.png"
+            src={about2}
             alt="Smart India Hackathon 2024"
             className="w-full h-auto"
           />

@@ -1,8 +1,13 @@
+import guideimg from "./../assets/about3.png";
 
 const GuideSection = () => {
   const guides = [
     { imgSrc: "src/assets/image copy 2.png", link: "#", name: "Themes" },
-    { imgSrc: "src/assets/image copy 2.png", link: "#", name: "Problem Statement" },
+    {
+      imgSrc: "src/assets/image copy 2.png",
+      link: "#",
+      name: "Problem Statement",
+    },
     { imgSrc: "src/assets/image copy 2.png", link: "#", name: "Guildelines" },
   ];
 
@@ -15,11 +20,13 @@ const GuideSection = () => {
             className="w-full md:w-96 h-96 bg-[#37545D] flex flex-col items-center p-8"
           >
             <img
-              src={guide.imgSrc}
+              src={guideimg}
               alt={`Guide ${index + 1}`}
               className="w-60 h-60 object-cover mb-4"
             />
-            <a href={guide.link} className="text-white text-2xl font-mono">{guide.name}</a>
+            <a href={guide.link} className="text-white text-2xl font-mono">
+              {guide.name}
+            </a>
           </div>
         ))}
       </div>
