@@ -1,5 +1,5 @@
 import { useState } from "react";
-import img from "./../assets/intersect.png";
+import img from "./../assets/Intersect.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
