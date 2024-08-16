@@ -3,18 +3,18 @@ function About() {
     <section className="bg-white py-16">
       <div className="container mx-auto flex flex-col md:flex-row items-center mb-16">
         <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-          <h2 className="text-4xl font-bold mb-4 text[#1E1E1E] font-mono">
+          <h2 className="md:text-4xl text-xl font-bold mb-4 text-[#1E1E1E] font-mono">
             About TEKATHON 3.0
           </h2>
-          <h3 className="text-2xl font-bold text[#1E1E1E] mb-4 font-mono">
+          <h3 className="md:text-2xl text-lg font-bold text[#1E1E1E] mb-4 font-mono">
             Internal Hackathon
           </h3>
-          <p className="text-lg text-[#45474B] mb-6 f">
+          <p className="md:text-lg text-sm text-[#45474B] mb-6 f">
             Gather with 1,000 students from around the world and industry
             leaders at the University of Waterloo to collaborate and bring your
             ideas to life in 36 hours.
           </p>
-          <p className="text-lg text-[#45474B] mb-6">
+          <p className="md:ext-lg text-sm text-[#45474B] mb-6">
             Hack the North aims to empower students like you who are eager to
             learn and create by providing an environment for you to explore and
             build with workshops, mentorship, and hardware. Let us take care of

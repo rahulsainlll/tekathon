@@ -7,7 +7,8 @@ import Timeline from "@/components/Timeline";
 
 const Home = () => {
   return (
-    <div>
+    <div className="relative">
+      <img src="/src/assets/bg.jpg" className="sm:hidden fixed -z-10 h-screen" alt="" />
       <HeroSection />
       <About />
       <Timeline />

@@ -3,7 +3,7 @@ import { Instagram, Mail } from "lucide-react";
 const Footer = () => {
   return (
     <footer
-      className="relative bg-cover bg-center py-20 text-white"
+      className="relative bg-cover py-3 bg-center sm:py-20 text-white"
       style={{ backgroundImage: "url('/src/assets/footer.png')" }}
     >
       <div className="container mx-auto text-center">
@@ -47,7 +47,7 @@ const Footer = () => {
             />
             <button className="absolute right-0 top-0 mt-3 mr-3 text-white">
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 "
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
