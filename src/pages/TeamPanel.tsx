@@ -67,35 +67,40 @@ const TeamPanel = () => {
     }
   
     const reader = new FileReader();
-  reader.onload = async function () {
-    if (typeof reader.result === 'string') {
-      const fileBase64 = reader.result.split(',')[1];
-      const token = localStorage.getItem("authToken");
+    reader.onload = async function () {
+      if (typeof reader.result === "string") {
+        const fileBase64 = reader.result.split(",")[1];
+        const token = localStorage.getItem("authToken");
   
-      // Prepare FormData
-      const formData = new FormData();
-      formData.append("problem_statement", selectedProblemStatement);
-      formData.append("file", new Blob([fileBase64], { type: file.type }), file.name);
+        // Prepare FormData
+        const formData = new FormData();
+        formData.append("problem_statement", selectedProblemStatement);
+        formData.append(
+          "file",
+          new Blob([fileBase64], { type: file.type }),
+          file.name
+        );
   
-      try {
-        const response = await axios.post("/team/ppt", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        try {
+          const response = await axios.post("/team/ppt", formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          });
   
-        alert(response.data.message);
-        window.location.reload();
-      } catch (err) {
-        console.error("File upload failed", err);
-        setError("Failed to upload file");
+          alert(response.data.message);
+          window.location.reload();
+        } catch (err) {
+          console.error("File upload failed", err);
+          setError("Failed to upload file");
+        }
       }
     };
   
     reader.readAsDataURL(file);
   };
-};
+  
   
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -103,11 +108,7 @@ const TeamPanel = () => {
 
     if (members.length === 0) {
       setIsSubmitting(true); // Show loader
-      if(newMembers.length!=5){
-        alert("Kindly add all the members..");
-        setIsSubmitting(false);
-        return;
-      }
+      
       try {
         const payload = {
           members: newMembers,
