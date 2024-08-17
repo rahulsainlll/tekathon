@@ -95,6 +95,7 @@ const TeamPanel = () => {
   
     reader.readAsDataURL(file);
   };
+};
   
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -145,7 +146,6 @@ const TeamPanel = () => {
   const totalMembers = 5;
   const currentMembers = members.length;
   const additionalMembersCount = Math.max(0, totalMembers - currentMembers);
-
   return (
     <div className="w-full bg-[#f5f7f8] overflow-x-hidden">
       {isSubmitting && <Loader />} {/* Show loader when submitting */}
@@ -259,7 +259,7 @@ const TeamPanel = () => {
                     />
                   </div>
                 ))}
-                {additionalMembersCount > 0 && (
+                {members.length === 0 && (
                   <div className="flex flex-col gap-4">
                     {[...Array(additionalMembersCount)].map((_, index) => (
                       <div key={index} className="w-full flex flex-col md:flex-row gap-4 md:gap-6">
@@ -357,6 +357,6 @@ const TeamPanel = () => {
     </div>
   );
 };
-};
+
 export default TeamPanel;
 
