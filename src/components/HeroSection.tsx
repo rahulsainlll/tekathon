@@ -1,23 +1,30 @@
+import React from "react";
 import img from "./../assets/Path.png";
 import mainImg from "./../assets/person.png";
 import bush from "./../assets/bushes@2x.png";
+import Navbar from "./Navbar"; // Import Navbar
 
-import Navbar from "./Navbar";
-
-function HeroSection() {
-
+function HeroSection({
+  scrollToSection,
+  refs,
+}: {
+  scrollToSection: (ref: React.RefObject<HTMLDivElement>) => void;
+  refs: {
+    aboutRef: React.RefObject<HTMLDivElement>;
+    timelinesRef: React.RefObject<HTMLDivElement>;
+  };
+}) {
   const handleRegisterClick = () => {
-   
-      window.location.href = "/teampanel";
-    
+    window.location.href = "/teampanel";
   };
 
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
-      <Navbar />
+      {/* Navbar inside HeroSection */}
+      <Navbar scrollToSection={scrollToSection} refs={refs} />
 
       <img
-        className="hidden sm:block  absolute top-0 -right-[7%]"
+        className="hidden sm:block absolute top-0 -right-[7%]"
         src={img}
         alt="not showing"
       />

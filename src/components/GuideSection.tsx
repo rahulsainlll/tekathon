@@ -2,13 +2,21 @@ import guideimg from "./../assets/image copy 2.png";
 
 const GuideSection = () => {
   const guides = [
-    { imgSrc: "src/assets/image copy 2.png", link: "#", name: "Themes" },
     {
       imgSrc: "src/assets/image copy 2.png",
-      link: "#",
+      link: "https://sih.gov.in/sih2024PS",
+      name: "Themes",
+    },
+    {
+      imgSrc: "src/assets/image copy 2.png",
+      link: "https://sih.gov.in/sih2024PS",
       name: "Problem Statement",
     },
-    { imgSrc: "src/assets/image copy 2.png", link: "#", name: "Guildelines" },
+    {
+      imgSrc: "src/assets/image copy 2.png",
+      link: "https://sih.gov.in/sih2024PS",
+      name: "Guildelines",
+    },
   ];
 
   return (
