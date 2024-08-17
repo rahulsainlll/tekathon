@@ -67,7 +67,8 @@ const TeamPanel = () => {
     }
   
     const reader = new FileReader();
-    reader.onload = async function () {
+  reader.onload = async function () {
+    if (typeof reader.result === 'string') {
       const fileBase64 = reader.result.split(',')[1];
       const token = localStorage.getItem("authToken");
   
