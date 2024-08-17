@@ -30,8 +30,11 @@ function HeroSection() {
           <p className="font-bold tracking-wider text-center md:text-[22px] text-[14px] capitalize leading-none">
             internal hackathon for SIH 2024
           </p>
-          <div className="w-[60%] md:w-[35%] mx-auto capitalize flex justify-center text-[10px] md:text-[20px] font-sans hover:scale-110 transition-all duration-[0.4s] text-white items-center h-10 bg-[#495e57] rounded-full">
-            <p onClick={handleRegisterClick}>Register now</p>
+          <div
+            onClick={handleRegisterClick}
+            className="w-[60%] md:w-[35%] mx-auto capitalize flex justify-center text-[10px] md:text-[20px] font-sans hover:scale-110 transition-all duration-[0.4s] text-white items-center h-10 bg-[#495e57] rounded-full"
+          >
+            <p>Register now</p>
           </div>
         </div>
 
