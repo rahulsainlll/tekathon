@@ -11,21 +11,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/auth/authContext";
 
 const AuthDialog = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [formData, setFormData] = useState({
-    teamName: "", // Optional for registration
+    teamName: "",
     name: "",
     uid: "",
     phoneNumber: "",
     email: "",
-    gender: "", // Ensure this matches the key used in onChange
+    gender: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth(); // Call useAuth hook here
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
@@ -37,7 +39,6 @@ const AuthDialog = () => {
     setLoading(true);
     setError("");
 
-    // Validate if gender is selected
     if (isRegister && !formData.gender) {
       setError("Gender is required.");
       setLoading(false);
@@ -47,7 +48,6 @@ const AuthDialog = () => {
     try {
       const endpoint = isRegister ? "/auth/register/lead" : "/auth/login";
       
-      // Construct payload
       const payload = isRegister 
         ? {
             ...formData,
@@ -57,22 +57,21 @@ const AuthDialog = () => {
         : formData;
 
       const response = await axios.post(endpoint, payload);
-
+      
       if (response.data.token) {
-        // Store token in session storage
-        sessionStorage.setItem('authToken', response.data.token);
+        localStorage.setItem('authToken', response.data.token);
+        setIsAuthenticated(true); // Use setIsAuthenticated here
       }
 
       if (isRegister) {
-        // Handle successful registration
         alert("Registered successfully! Please login.");
-        setIsRegister(false); // Switch to login view
+        setIsRegister(false);
       } else {
-        navigate("/teampanel"); // Navigate to the team panel
+        navigate("/teampannel");
       }
     } catch (err) {
+      console.error("Caught error:", err);
       if (axios.isAxiosError(err)) {
-        // Display error message from the server
         setError(err.response?.data?.message || "An error occurred");
       } else {
         setError("An unexpected error occurred");

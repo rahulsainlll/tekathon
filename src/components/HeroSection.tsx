@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import img from "./../assets/Path.png";
@@ -26,14 +25,14 @@ function HeroSection({
     timelinesRef: React.RefObject<HTMLDivElement>;
   };
 }) {
-    const [isRegister, setIsRegister] = useState(false);
+  const [isRegister, setIsRegister] = useState(true); 
   const [formData, setFormData] = useState({
-    teamName: "", // Optional for registration
+    teamName: "",
     name: "",
     uid: "",
     phoneNumber: "",
     email: "",
-    gender: "", // Ensure this matches the key used in onChange
+    gender: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -50,18 +49,16 @@ function HeroSection({
     setLoading(true);
     setError("");
 
-    // Validate if gender is selected
-    if (!isRegister && !formData.gender) {
+    if (isRegister && !formData.gender) {
       setError("Gender is required.");
       setLoading(false);
       return;
     }
     
     try {
-      const endpoint = !isRegister ? "/auth/register/lead" : "/auth/login";
+      const endpoint = isRegister ? "/auth/register/lead" : "/auth/login";
       
-      // Construct payload
-      const payload = !isRegister 
+      const payload = isRegister 
         ? {
             ...formData,
             role: "team_lead",
@@ -72,20 +69,16 @@ function HeroSection({
       const response = await axios.post(endpoint, payload);
 
       if (response.data.token) {
-        // Store token in session storage
-        sessionStorage.setItem('authToken', response.data.token);
-      }
-
-      if (!isRegister) {
-        // Handle successful registration
-        alert("Registered successfully! Please login.");
-        setIsRegister(true); // Switch to login view
-      } else {
-        navigate("/teampanel"); // Navigate to the team panel
+        localStorage.setItem('authToken', response.data.token);
+        if (!isRegister) {
+          navigate("/teampannel"); // Navigate to the team panel upon successful login
+        } else {
+          alert("Registered successfully! Please login.");
+          setIsRegister(false); // Switch to login view after successful registration
+        }
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        // Display error message from the server
         setError(err.response?.data?.message || "An error occurred");
       } else {
         setError("An unexpected error occurred");
@@ -94,6 +87,7 @@ function HeroSection({
       setLoading(false);
     }
   };
+
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
       <Navbar scrollToSection={scrollToSection} refs={refs} />
@@ -101,7 +95,7 @@ function HeroSection({
       <img
         className="hidden sm:block absolute top-0 -right-[7%]"
         src={img}
-        alt="not showing"
+        alt="Background decoration"
       />
 
       <div className="w-full h-[85vh] z-30 relative flex flex-col md:flex-row justify-center md:justify-between items-center">
@@ -115,73 +109,72 @@ function HeroSection({
           <div
             className="w-[60%] md:w-[35%] mx-auto capitalize flex justify-center text-[10px] md:text-[20px] font-sans hover:scale-110 transition-all duration-[0.4s] text-white items-center h-10 bg-[#495e57] rounded-full"
           >
-       <Dialog>
-      <DialogTrigger asChild>
-        <div className="w-32 flex justify-center md:text-[20px] items-center h-10 rounded-full cursor-pointer">
-          <p>Register</p>
-        </div>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] mx-auto">
-        <DialogHeader>
-          <DialogTitle>{!isRegister ? "Register" : "Login"}</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
-          {!isRegister ? (
-            <>
-              <Label htmlFor="teamName">Team Name</Label>
-              <Input id="teamName" value={formData.teamName} onChange={handleChange} placeholder="Enter your team name" required/>
-              <Label htmlFor="name">Leader Name</Label>
-              <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" required />
-              <Label htmlFor="uid">UID</Label>
-              <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" required/>
-              <Label htmlFor="phoneNumber">Phone Number</Label>
-              <Input id="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" required/>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
-              <Label htmlFor="gender">Gender</Label>
-              <select
-                id="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
-                required
-              >
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" required />
-            </>
-          ) : (
-            <>
-              <Label htmlFor="uid">UID</Label>
-              <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" required/>
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" required/>
-            </>
-          )}
-          {error && <p className="text-red-500">{error}</p>}
-          <div className="flex flex-col justify-center items-center mt-4">
-            <button
-              type="submit"
-              className="w-28 flex justify-center text-[16px] bg-[#FCF2BF] transition-all items-center h-10 rounded-full cursor-pointer"
-              disabled={loading}
-            >
-              {loading ? "Loading..." : !isRegister ? "Submit" : "Login"}
-            </button>
-            <Button
-              onClick={() => setIsRegister(!isRegister)}
-              type="button"
-              className="mt-4 font-bold"
-              variant="link"
-            >
-              {!isRegister ? "Back to Login" : "Register Now"}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="w-32 flex justify-center md:text-[20px] items-center h-10 rounded-full cursor-pointer">
+                  <p>{isRegister ? "Register" : "Login"}</p>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px] mx-auto">
+                <DialogHeader>
+                  <DialogTitle>{isRegister ? "Register" : "Login"}</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+                  {isRegister ? (
+                    <>
+                      <Label htmlFor="teamName">Team Name</Label>
+                      <Input id="teamName" value={formData.teamName} onChange={handleChange} placeholder="Enter your team name" />
+                      <Label htmlFor="name">Leader Name</Label>
+                      <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" />
+                      <Label htmlFor="uid">UID</Label>
+                      <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" />
+                      <Label htmlFor="phoneNumber">Phone Number</Label>
+                      <Input id="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" />
+                      <Label htmlFor="email">Email</Label>
+                      <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" />
+                      <Label htmlFor="gender">Gender</Label>
+                      <select
+                        id="gender"
+                        value={formData.gender}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
+                      >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                      <Label htmlFor="password">Password</Label>
+                      <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" />
+                    </>
+                  ) : (
+                    <>
+                      <Label htmlFor="uid">UID</Label>
+                      <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" />
+                      <Label htmlFor="password">Password</Label>
+                      <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" />
+                    </>
+                  )}
+                  {error && <p className="text-red-500">{error}</p>}
+                  <div className="flex flex-col justify-center items-center mt-4">
+                    <button
+                      type="submit"
+                      className="w-28 flex justify-center text-[16px] bg-[#FCF2BF] transition-all items-center h-10 rounded-full cursor-pointer"
+                      disabled={loading}
+                    >
+                      {loading ? "Loading..." : isRegister ? "Submit" : "Login"}
+                    </button>
+                    <Button
+                      onClick={() => setIsRegister(!isRegister)}
+                      type="button"
+                      className="mt-4 font-bold"
+                      variant="link"
+                    >
+                      {isRegister ? "Already have an account? Login" : "Need to register? Register"}
+                    </Button>
+                  </div>
+                </form>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 
@@ -189,14 +182,16 @@ function HeroSection({
           <img
             className="w-[80%] md:w-full h-auto scale-110 object-contain"
             src={mainImg}
-            alt="not showing"
+            alt="Main visual"
           />
         </div>
       </div>
 
       <div className="absolute w-full z-40 h-[20vh] hidden md:block bottom-0 left-0">
-        <img className="w-full h-full object-center" src={bush} alt="" />
+        <img className="w-full h-full object-center" src={bush} alt="Background decoration" />
       </div>
     </div>
-  );}
+  );
+}
+
 export default HeroSection;

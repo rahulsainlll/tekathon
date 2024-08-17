@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* Public route */}
           <Route
-            path="/teampanel"
+            path="/teampannel"
             element={
               <ProtectedRoute>
                 <TeamPanel />
