@@ -65,7 +65,7 @@ const TeamPanel = () => {
       alert("Problem statement is required.");
       return;
     }
-  
+    setIsLoading(true);
     const reader = new FileReader();
     reader.onload = async function () {
       if (typeof reader.result === "string") {
@@ -94,6 +94,9 @@ const TeamPanel = () => {
         } catch (err) {
           console.error("File upload failed", err);
           setError("Failed to upload file");
+        }
+        finally{
+          setIsLoading(false);
         }
       }
     };
