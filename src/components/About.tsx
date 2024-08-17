@@ -3,7 +3,7 @@ import about2 from "./../assets/about3.png";
 
 function About() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-16" id="about">
       <div className="container mx-auto flex flex-col md:flex-row items-center mb-16">
         <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
           <h2 className="md:text-4xl text-xl font-bold mb-4 text-[#1E1E1E] font-mono">

@@ -44,7 +44,7 @@ const TeamPanel = () => {
                 />
                 <select className="w-full md:w-auto px-4 py-3 md:px-24 md:text-xl md:py-5 rounded-xl">
                   <option value="" hidden>
-                    Choose Theme
+                    Choose Problem Statement
                   </option>
                   <option value="saab">Saab</option>
                   <option value="fiat">Fiat</option>
@@ -94,14 +94,9 @@ const TeamPanel = () => {
                   <div className="w-[90%] md:w-[60%] py-2 capitalize bg-[#ffe668] text-center text-xl md:text-2xl font-semibold font-sans rounded-xl">
                     Upload PPT
                   </div>
-                  <div className="w-[90%] md:w-[60%] flex flex-col md:flex-row gap-4 md:gap-0 justify-between">
-                    <div className="w-full md:w-[49%] py-2 md:py-1 bg-[#ffe668] text-[20px] md:text-[1.2rem] text-center font-sans font-semibold rounded-lg">
-                      Save and Preview
-                    </div>
                     <div className="w-full md:w-[49%] mb-5 py-2 md:py-1 bg-[#ffe668] text-[20px] md:text-[1.2rem] text-center font-sans font-semibold rounded-lg">
                       Submit
                     </div>
-                  </div>
                 </div>
               </form>
             </div>

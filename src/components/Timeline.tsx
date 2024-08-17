@@ -1,7 +1,7 @@
 
 const Timeline = () => {
   return (
-    <div className="container mx-auto md:py-16 md:mb-28">
+    <div className="container mx-auto md:py-16 md:mb-28" id="timeline">
       <div className="text-center mb-8">
         <h2 className="font-mono  text-2xl md:text-3xl font-bold">Timeline</h2>
       </div>
