@@ -49,7 +49,7 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* mobile Navigation */}
       <div className="sm:hidden flex justify-between items-center px-4 py-3 border-b">
         <div className="flex items-center">
           <img
@@ -68,7 +68,7 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* mobile menu */}
       {isMobileMenuOpen && (
         <div className="sm:hidden bg-white w-full p-4 border-t border-gray-200">
           <p

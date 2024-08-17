@@ -17,13 +17,13 @@ const FAQDialog: React.FC = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-32 flex justify-center text-[20px] hover:scale-110 hover:bg-[#495e57] transition-all items-center h-10 rounded-full cursor-pointer">
-          <p>FAQ</p>
+        <div className="w-32 flex justify-center md:text-[20px] hover:scale-110 hover:bg-[#495e57] transition-all items-center h-10 rounded-full cursor-pointer">
+          <p className="capitalize">FAQ</p>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] mx-auto">
+      <DialogContent className="sm:max-w-[425px] mx-auto mt-10 sm:mt-0 p-4 sm:p-8">
         <DialogHeader>
-          <DialogTitle>FAQ</DialogTitle>
+          <DialogTitle className="text-center">FAQ</DialogTitle>
         </DialogHeader>
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">

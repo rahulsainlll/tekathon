@@ -16,7 +16,7 @@ const AuthDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-32 flex justify-center text-[20px] hover:scale-110 hover:bg-[#495e57] transition-all items-center h-10 rounded-full cursor-pointer">
+        <div className="w-32 flex justify-center md:text-[20px] hover:scale-110 hover:bg-[#495e57] transition-all items-center h-10 rounded-full cursor-pointer">
           <p>{isRegister ? "Register" : "Login"}</p>
         </div>
       </DialogTrigger>

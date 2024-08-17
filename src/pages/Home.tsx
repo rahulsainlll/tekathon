@@ -5,6 +5,7 @@ import Timeline from "@/components/Timeline";
 import GuideSection from "@/components/GuideSection";
 import Collaboration from "@/components/Collaboration";
 import Footer from "@/components/Footer";
+import bg from "/src/assets/bg.jpg";
 
 const Home: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -16,11 +17,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative">
-      <img
-        src="/src/assets/bg.jpg"
-        className="sm:hidden fixed -z-10 h-screen"
-        alt=""
-      />
+      <img src={bg} className="sm:hidden fixed -z-10 h-screen" alt="" />
 
       <HeroSection
         scrollToSection={scrollToSection}
