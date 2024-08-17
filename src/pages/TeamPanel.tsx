@@ -357,6 +357,6 @@ const TeamPanel = () => {
     </div>
   );
 };
-
+};
 export default TeamPanel;
 
