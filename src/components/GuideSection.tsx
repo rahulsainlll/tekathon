@@ -17,7 +17,7 @@ const GuideSection = () => {
         {guides.map((guide, index) => (
           <div
             key={index}
-            className="w-full md:w-96 h-96 bg-[#37545D] flex flex-col items-center p-8"
+            className="w-full md:w-96 h-96 bg-[#37545D] flex flex-col items-center p-8 rounded-xl"
           >
             <img
               src={guideimg}

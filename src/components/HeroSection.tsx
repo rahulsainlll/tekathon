@@ -1,9 +1,17 @@
 import img from "./../assets/Path.png";
 import mainImg from "./../assets/person.png";
 import bush from "./../assets/bushes@2x.png";
+
 import Navbar from "./Navbar";
 
 function HeroSection() {
+
+  const handleRegisterClick = () => {
+   
+      window.location.href = "/teampanel";
+    
+  };
+
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
       <Navbar />
@@ -23,7 +31,7 @@ function HeroSection() {
             internal hackathon for SIH 2024
           </p>
           <div className="w-[60%] md:w-[35%] mx-auto capitalize flex justify-center text-[10px] md:text-[20px] font-sans hover:scale-110 transition-all duration-[0.4s] text-white items-center h-10 bg-[#495e57] rounded-full">
-            <p>Register now</p>
+            <p onClick={handleRegisterClick}>Register now</p>
           </div>
         </div>
 

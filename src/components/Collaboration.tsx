@@ -1,22 +1,22 @@
 
 const images = [
-  "/path/to/image1.jpg",
-  "/path/to/image2.jpg",
-  "/path/to/image3.jpg",
-  "/path/to/image4.jpg",
-  "/path/to/image5.jpg",
-  "/path/to/image6.jpg",
-  "/path/to/image7.jpg",
-  "/path/to/image8.jpg",
-  "/path/to/image9.jpg",
-  "/path/to/image10.jpg",
+  "/src/assets/collab1.PNG",
+  "/src/assets/collab2.jpeg",
+  "/src/assets/collab3.jpeg",
+  "/src/assets/collab4.png",
+  "/src/assets/collab5.jpg",
+  "/src/assets/collab6.png",
+  "/src/assets/collab2.jpeg",
+  "/src/assets/collab1.PNG",
+  "/src/assets/collab3.jpeg",
+  "/src/assets/collab5.jpg",
 ];
 
 const Collaboration = () => {
   return (
-    <section className="relative py-12 mb-28">
+    <section className="relative  py-12 md:mb-28">
       <div className="text-center mb-8">
-        <h2 className="font-mono text-3xl font-bold">
+        <h2 className="font-mono text-xl md:text-3xl font-bold">
           Collaboration Clubs and Partners
         </h2>
       </div>
@@ -27,7 +27,7 @@ const Collaboration = () => {
               <div key={index} className="slider-item">
                 <img
                   src={src}
-                  className="w-48 h-48 bg-[#395D61] rounded-full object-cover"
+                  className="w-20 h-20 md:w-48 md:h-48 border rounded-full object-cover"
                 />
               </div>
             ))}
@@ -36,7 +36,7 @@ const Collaboration = () => {
               <div key={`duplicate-${index}`} className="slider-item">
                 <img
                   src={src}
-                  className="w-32 h-32 bg-[#395D61] rounded-full object-cover"
+                  className="w-20 h-20 md:w-48 md:h-48 borrder rounded-full object-cover"
                 />
               </div>
             ))}
