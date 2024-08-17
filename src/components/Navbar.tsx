@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import img from "./../assets/Intersect.png";
+import culog from "./../assets/culogo.png";
 import AuthDialog from "./AuthDialog";
 import FAQDialog from "./FAQDialog";
 import { MenuIcon, XIcon } from "lucide-react";
@@ -21,19 +22,10 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
 
   return (
     <header className="w-full relative z-50">
-      {/* Desktop Navigation */}
       <div className="hidden sm:flex justify-between px-10 py-5 items-center">
         <div className="w-[40%] flex items-center">
-          <img
-            className="w-16 h-16 hover:animate-spin"
-            src={img}
-            alt="not showing"
-          />
-          <img
-            className="w-16 h-16 hover:animate-spin"
-            src={img}
-            alt="not showing"
-          />
+          <img className="w-28 h-14" src={culog} alt="not showing" />
+          <img className="w-16 h-16" src={img} alt="not showing" />
         </div>
 
         <div className="w-[60%] flex justify-between capitalize text-[20px] items-center">
@@ -61,8 +53,8 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
       <div className="sm:hidden flex justify-between items-center px-4 py-3 border-b">
         <div className="flex items-center">
           <img
-            className="w-12 h-12 hover:animate-spin"
-            src={img}
+            className="w-20 h-12 hover:animate-spin"
+            src={culog}
             alt="not showing"
           />
           <img

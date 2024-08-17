@@ -2,7 +2,8 @@ import React from "react";
 import img from "./../assets/Path.png";
 import mainImg from "./../assets/person.png";
 import bush from "./../assets/bushes@2x.png";
-import Navbar from "./Navbar"; // Import Navbar
+import { useNavigate } from "react-router-dom"; 
+import Navbar from "./Navbar"; 
 
 function HeroSection({
   scrollToSection,
@@ -15,12 +16,13 @@ function HeroSection({
   };
 }) {
   const handleRegisterClick = () => {
-    window.location.href = "/teampanel";
+    navigate("/teampanel");
   };
+
+   const navigate = useNavigate();
 
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
-      {/* Navbar inside HeroSection */}
       <Navbar scrollToSection={scrollToSection} refs={refs} />
 
       <img
