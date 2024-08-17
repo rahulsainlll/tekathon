@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import img from "./../assets/Path.png";
 import mainImg from "./../assets/person.png";
 import bush from "./../assets/bushes@2x.png";
@@ -25,6 +27,73 @@ function HeroSection({
   };
 }) {
     const [isRegister, setIsRegister] = useState(false);
+  const [formData, setFormData] = useState({
+    teamName: "", // Optional for registration
+    name: "",
+    uid: "",
+    phoneNumber: "",
+    email: "",
+    gender: "", // Ensure this matches the key used in onChange
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // Validate if gender is selected
+    if (!isRegister && !formData.gender) {
+      setError("Gender is required.");
+      setLoading(false);
+      return;
+    }
+    
+    try {
+      const endpoint = !isRegister ? "/auth/register/lead" : "/auth/login";
+      
+      // Construct payload
+      const payload = !isRegister 
+        ? {
+            ...formData,
+            role: "team_lead",
+            ...(formData.teamName && { teamName: formData.teamName })
+          }
+        : formData;
+
+      const response = await axios.post(endpoint, payload);
+
+      if (response.data.token) {
+        // Store token in session storage
+        sessionStorage.setItem('authToken', response.data.token);
+      }
+
+      if (!isRegister) {
+        // Handle successful registration
+        alert("Registered successfully! Please login.");
+        setIsRegister(true); // Switch to login view
+      } else {
+        navigate("/teampanel"); // Navigate to the team panel
+      }
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        // Display error message from the server
+        setError(err.response?.data?.message || "An error occurred");
+      } else {
+        setError("An unexpected error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
       <Navbar scrollToSection={scrollToSection} refs={refs} />
@@ -46,69 +115,73 @@ function HeroSection({
           <div
             className="w-[60%] md:w-[35%] mx-auto capitalize flex justify-center text-[10px] md:text-[20px] font-sans hover:scale-110 transition-all duration-[0.4s] text-white items-center h-10 bg-[#495e57] rounded-full"
           >
-            <Dialog>
+       <Dialog>
       <DialogTrigger asChild>
-        <div className="w-32 flex justify-center md:text-[20px] transition-all items-center h-10 rounded-full cursor-pointer">
-          <p> Register</p>
+        <div className="w-32 flex justify-center md:text-[20px] items-center h-10 rounded-full cursor-pointer">
+          <p>Register</p>
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] mx-auto">
         <DialogHeader>
           <DialogTitle>{!isRegister ? "Register" : "Login"}</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-        {!isRegister ? (
-          <>
-        <Label htmlFor="teamName">Team Name</Label>
-              <Input id="teamName" placeholder="Enter your team name" />
-              <Label htmlFor="leaderName">Leader's Name</Label>
-              <Input id="leaderName" placeholder="Enter leader's name" />
+        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+          {!isRegister ? (
+            <>
+              <Label htmlFor="teamName">Team Name</Label>
+              <Input id="teamName" value={formData.teamName} onChange={handleChange} placeholder="Enter your team name" required/>
+              <Label htmlFor="name">Leader Name</Label>
+              <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" required />
               <Label htmlFor="uid">UID</Label>
-              <Input id="uid" placeholder="Enter your UID" />
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" placeholder="Enter your phone number" />
+              <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" required/>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
+              <Input id="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" required/>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
+              <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
               <Label htmlFor="gender">Gender</Label>
               <select
                 id="gender"
+                value={formData.gender}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-opacity-50"
+                required
               >
+                <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
-              </>
-               ) : (
-                <>
-              <Label htmlFor="uid">UID</Label>
-              <Input id="uid" placeholder="Enter your UID" />
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-              />
+              <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" required />
+            </>
+          ) : (
+            <>
+              <Label htmlFor="uid">UID</Label>
+              <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" required/>
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" required/>
             </>
           )}
-              <div className="flex flex-col justify-center items-center mt-4">
-          <button
-            type="submit"
-            className="w-28 flex justify-center text-[16px] bg-[#FCF2BF] transition-all items-center h-10 rounded-full cursor-pointer"
-          >
-           {!isRegister ? "Submit" : "Login"}
-          </button>
-          <Button
-            onClick={() => setIsRegister(!isRegister)}
-            type="button"
-            className="mt-4 font-bold"
-            variant="link"
-          >
+          {error && <p className="text-red-500">{error}</p>}
+          <div className="flex flex-col justify-center items-center mt-4">
+            <button
+              type="submit"
+              className="w-28 flex justify-center text-[16px] bg-[#FCF2BF] transition-all items-center h-10 rounded-full cursor-pointer"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : !isRegister ? "Submit" : "Login"}
+            </button>
+            <Button
+              onClick={() => setIsRegister(!isRegister)}
+              type="button"
+              className="mt-4 font-bold"
+              variant="link"
+            >
               {!isRegister ? "Back to Login" : "Register Now"}
-          </Button>
-        </div></div>
+            </Button>
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
-
           </div>
         </div>
 
