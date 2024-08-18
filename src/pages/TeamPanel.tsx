@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import img from "../assets/Intersect.png";
 import Loader from "../components/ui/Loader";
-import { useNavigate } from "react-router-dom";
 
 const TeamPanel = () => {
   const [teamData, setTeamData] = useState<any>(null);
@@ -13,7 +12,6 @@ const TeamPanel = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedProblemStatement, setSelectedProblemStatement] = useState<string>("");
   const [selectedtheme, setSelectedtheme] = useState<string>("");
-  const navigate=useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
