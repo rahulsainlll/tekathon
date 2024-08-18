@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import img from "../assets/Intersect.png";
 import Loader from "../components/ui/Loader";
+import { useNavigate } from "react-router-dom";
 
 const TeamPanel = () => {
   const [teamData, setTeamData] = useState<any>(null);
@@ -12,6 +13,7 @@ const TeamPanel = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedProblemStatement, setSelectedProblemStatement] = useState<string>("");
   const [selectedtheme, setSelectedtheme] = useState<string>("");
+  const navigate=useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -62,55 +64,53 @@ const TeamPanel = () => {
 
   const handleFileUpload = async () => {
     if (!file) return;
-
-    if (!selectedProblemStatement && !selectedtheme) {
-      alert("Problem statement and Theme is required.");
+  
+    if (!selectedProblemStatement || !selectedtheme) {
+      alert("Problem statement and Theme are required.");
       return;
     }
+  
     setIsLoading(true);
-    const reader = new FileReader();
-    reader.onload = async function () {
-      if (typeof reader.result === "string") {
-        const fileBase64 = reader.result.split(",")[1];
-        const token = localStorage.getItem("authToken");
-
-        const formData = new FormData();
-        formData.append("problem_statement", selectedProblemStatement);
-        formData.append("theme", selectedtheme);
-        formData.append(
-          "file",
-          new Blob([fileBase64], { type: file.type }),
-          file.name
-        );
-
-        try {
-          const response = await axios.post("/team/ppt", formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          });
-
-          alert(response.data.message);
-          window.location.reload();
-        } catch (err) {
-          console.error("File upload failed", err);
-          setError("Failed to upload file");
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    reader.readAsDataURL(file);
+  
+    try {
+      const token = localStorage.getItem("authToken");
+  
+      // Create a FormData object and append the file and other data
+      const formData = new FormData();
+      formData.append("problem_statement", selectedProblemStatement);
+      formData.append("theme", selectedtheme);
+      formData.append("file", file); // Append the file directly
+  
+      // Send the file via a POST request
+      const response = await axios.post("/team/ppt", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      alert(response.data.message);
+      window.location.reload();
+    } catch (err) {
+      console.error("File upload failed", err);
+      setError("Failed to upload file");
+    } finally {
+      setIsLoading(false);
+    }
   };
-
+  
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (members.length === 0) {
       setIsSubmitting(true);
+      const hasAtLeastOneFemale = newMembers.some(member => member.gender === "Female");
 
+      if (!hasAtLeastOneFemale) {
+        alert("At least one member must be female.");
+        setIsSubmitting(false);
+        return;
+      }
       try {
         const payload = {
           members: newMembers,
@@ -322,7 +322,7 @@ const TeamPanel = () => {
                 />
               </div>
             )}
-           {(currentMembers=== 0) && (
+           {(previousSubmissions.length<3) && (
             <button
               type="submit"
               className="w-full mt-6 px-6 py-3 rounded-xl bg-[#38b2ac] text-white font-semibold text-lg hover:bg-[#2c7a7b] transition-colors duration-300"
@@ -345,14 +345,14 @@ const TeamPanel = () => {
                     <p className="font-bold">{submission.theme}</p>
                   <p className="font-bold">{submission.problem_statement}</p>
                   <a
-                    href={submission.link}
+                    href={submission.submission_link}
                     className="text-[#38b2ac] underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     View Submission
                   </a>
-                  <p className="text-gray-400">{new Date(submission.timestamp).toLocaleString()}</p>
+                  <p className="text-gray-400">{new Date(submission.submitted_at).toLocaleString()}</p>
                 </div>
                 ))}
               </div>
