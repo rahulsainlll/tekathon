@@ -107,9 +107,10 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
           >
             Timelines
           </p>
+          <a href='Guidance.pdf'>
           <p className="w-full text-left hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer pl-10">
             Guidelines
-          </p>
+          </p></a>
           <div className='relative -left-2'>
           <FAQDialog /></div>
           <div className="relative -left-1">

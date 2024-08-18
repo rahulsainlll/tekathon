@@ -6,7 +6,7 @@ const GuideSection = () => {
   const guides = [
     {
       imgSrc: themeImage,
-      link: "https://sih.gov.in/sih2024PS",
+      link: "https://sih.gov.in/#sihthemes",
       name: "Themes",
     },
     {
@@ -22,9 +22,11 @@ const GuideSection = () => {
   ];
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-16">  
       <div className="container mx-auto flex flex-col md:flex-row gap-8 justify-between items-center">
         {guides.map((guide, index) => (
+          <div>
+          <a href={guide.link} className="text-white text-2xl font-mono">
           <div
             key={index}
             className="w-full md:w-96 h-96 bg-[#37545D] flex flex-col items-center p-8 rounded-xl"
@@ -34,9 +36,10 @@ const GuideSection = () => {
               alt={`Guide ${index + 1}`}
               className="w-60 h-60 object-cover mb-4"
             />
-            <a href={guide.link} className="text-white text-2xl font-mono">
+          
               {guide.name}
-            </a>
+          </div>
+          </a>
           </div>
         ))}
       </div>

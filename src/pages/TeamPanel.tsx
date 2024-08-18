@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import img from "../assets/Intersect.png";
 import Loader from "../components/ui/Loader";
 
@@ -12,6 +13,7 @@ const TeamPanel = () => {
   const [file, setFile] = useState<File | null>(null);
   const [selectedProblemStatement, setSelectedProblemStatement] = useState<string>("");
   const [selectedtheme, setSelectedtheme] = useState<string>("");
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,7 +90,7 @@ const TeamPanel = () => {
       });
   
       alert(response.data.message);
-      window.location.reload();
+      navigate('/');
     } catch (err) {
       console.error("File upload failed", err);
       setError("Failed to upload file");
@@ -131,7 +133,7 @@ const TeamPanel = () => {
         }));
 
         alert("Added Successfully");
-        window.location.reload();
+        navigate('/');
 
       } catch (err) {
         setError("Failed to post data");
