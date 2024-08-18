@@ -12,7 +12,7 @@ const GuideSection = () => {
     },
     {
       imgSrc: "src/assets/guid.png", // Make sure the path is correct
-      link: "/",
+      link: "/Guidance.pdf",
       name: "Guidelines",
     },
   ];
