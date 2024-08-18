@@ -72,28 +72,30 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
       {isMobileMenuOpen && (
         <div className="sm:hidden bg-white w-full p-4 border-t border-gray-200">
           <p
-            className="w-full text-center hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer"
+            className="w-full text-left hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer pl-10"
             onClick={() => {
               scrollToSection(refs.aboutRef);
               setMobileMenuOpen(false);
             }}
           >
-            about
+            About
           </p>
           <p
-            className="w-full text-center hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer"
+            className="w-full text-left hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer pl-10"
             onClick={() => {
               scrollToSection(refs.timelinesRef);
               setMobileMenuOpen(false);
             }}
           >
-            timelines
+            Timelines
           </p>
-          <p className="w-full text-center hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer">
-            guidelines
+          <p className="w-full text-left hover:bg-[#495e57] hover:scale-110 transition-all px-4 py-2 rounded-full cursor-pointer pl-10">
+            Guidelines
           </p>
-          <FAQDialog />
-          <AuthDialog />
+          <div className='relative -left-2'>
+          <FAQDialog /></div>
+          <div className="relative -left-1">
+          <AuthDialog /></div>
         </div>
       )}
     </header>
