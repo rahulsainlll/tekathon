@@ -11,7 +11,7 @@ const TeamPanel = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [selectedProblemStatement, setSelectedProblemStatement] = useState<string>("");
-
+  const [selectedtheme, setSelectedtheme] = useState<string>("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,6 +51,9 @@ const TeamPanel = () => {
     } else if (event.target.name === "problem_statement") {
       setSelectedProblemStatement(value);
     }
+    else if (event.target.name === "theme") {
+      setSelectedtheme(value);
+    }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +63,8 @@ const TeamPanel = () => {
   const handleFileUpload = async () => {
     if (!file) return;
 
-    if (!selectedProblemStatement) {
-      alert("Problem statement is required.");
+    if (!selectedProblemStatement && !selectedtheme) {
+      alert("Problem statement and Theme is required.");
       return;
     }
     setIsLoading(true);
@@ -73,6 +76,7 @@ const TeamPanel = () => {
 
         const formData = new FormData();
         formData.append("problem_statement", selectedProblemStatement);
+        formData.append("theme", selectedtheme);
         formData.append(
           "file",
           new Blob([fileBase64], { type: file.type }),
@@ -198,6 +202,19 @@ const TeamPanel = () => {
                 <option value="fiat">Fiat</option>
                 <option value="audi">Audi</option>
               </select>
+              <select
+                className="w-full md:flex-1 px-4 py-3 rounded-xl bg-[#4a5568] text-white"
+                name="theme"
+                value={selectedtheme}
+                onChange={handleChange}
+              >
+                <option value="" hidden>
+                  Choose theme
+                </option>
+                <option value="Dark">Dark</option>
+                <option value="ColourFull">ColourFull</option>
+                <option value="Hii">Hii</option>
+              </select>
             </div>
 
             <h2 className="text-lg md:text-xl font-semibold text-[#ffe668]">Register Members</h2>
@@ -294,7 +311,7 @@ const TeamPanel = () => {
               </div>
             )}
 
-            {currentMembers>= 4 && (
+            {(currentMembers>= 4 && previousSubmissions.length<3) && (
               <div>
                 <label className="block text-[#ffe668]">Upload PPT:</label>
                 <input
@@ -305,7 +322,7 @@ const TeamPanel = () => {
                 />
               </div>
             )}
-
+           {(currentMembers=== 0) && (
             <button
               type="submit"
               className="w-full mt-6 px-6 py-3 rounded-xl bg-[#38b2ac] text-white font-semibold text-lg hover:bg-[#2c7a7b] transition-colors duration-300"
@@ -313,6 +330,7 @@ const TeamPanel = () => {
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
+           )}
           </form>
 
           {/* Previous Submissions Section */}
@@ -323,29 +341,19 @@ const TeamPanel = () => {
             ) : (
               <div className="space-y-4">
                 {previousSubmissions.map((submission: any, index: number) => (
-                  <div
-                    key={index}
-                    className="p-4 bg-[#4a5568] text-white rounded-xl shadow-lg flex flex-col md:flex-row justify-between items-center"
+                  <div key={index} className="bg-[#4a5568] text-white rounded-xl p-4 mb-4">
+                    <p className="font-bold">{submission.theme}</p>
+                  <p className="font-bold">{submission.problem_statement}</p>
+                  <a
+                    href={submission.link}
+                    className="text-[#38b2ac] underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <div className="md:w-1/2">
-                      <p className="text-lg font-medium">Problem Statement:</p>
-                      <p className="text-[#ffe668]">{submission.problem_statement}</p>
-                    </div>
-                    <div className="mt-2 md:mt-0 md:w-1/4 text-center">
-                      <p className="text-lg font-medium">Submission Time:</p>
-                      <p className="text-gray-300">{new Date(submission.submitted_at).toLocaleString()}</p>
-                    </div>
-                    <div className="mt-2 md:mt-0 md:w-1/4 text-center">
-                      <a
-                        href={submission.submission_link}
-                        className="text-[#38b2ac] hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Submission
-                      </a>
-                    </div>
-                  </div>
+                    View Submission
+                  </a>
+                  <p className="text-gray-400">{new Date(submission.timestamp).toLocaleString()}</p>
+                </div>
                 ))}
               </div>
             )}
