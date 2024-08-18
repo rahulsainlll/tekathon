@@ -1,17 +1,17 @@
 const GuideSection = () => {
   const guides = [
     {
-      imgSrc: "src/assets/themeimage.png", // Make sure the path is correct
+      imgSrc: "/src/assets/themeimage.png", // Make sure the path is correct
       link: "https://sih.gov.in/sih2024PS",
       name: "Themes",
     },
     {
-      imgSrc: "src/assets/problem.png", // Make sure the path is correct
+      imgSrc: "/src/assets/problem.png", // Make sure the path is correct
       link: "https://sih.gov.in/sih2024PS",
       name: "Problem Statement",
     },
     {
-      imgSrc: "src/assets/guid.png", // Make sure the path is correct
+      imgSrc: "/src/assets/guid.png", // Make sure the path is correct
       link: "/Guidance.pdf",
       name: "Guidelines",
     },
