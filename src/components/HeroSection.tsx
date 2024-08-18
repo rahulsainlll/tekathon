@@ -70,8 +70,10 @@ function HeroSection({
 
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
-       
+        
       }
+       
+      
       if (isRegister) {
         alert("Registered successfully! Please login.");
         setIsRegister(false);
@@ -80,6 +82,7 @@ function HeroSection({
         navigate("/teampannel");
          // Switch to login view after successful registration
       }
+
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || "An error occurred");

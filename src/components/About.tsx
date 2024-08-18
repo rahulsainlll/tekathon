@@ -10,23 +10,22 @@ function About() {
             About TEKATHON 3.0
           </h2>
           <h3 className="md:text-2xl text-lg font-bold text[#1E1E1E] mb-4 font-mono">
-            Internal Hackathon
+          Join thousands of students at Chandigarh University for Tekathon 3.0, where your innovations and ideas are taken to the next level.
           </h3>
           <p className="md:text-lg text-sm text-[#45474B] mb-6 ">
-            Gather with 1,000 students from around the world and industry
-            leaders at the University of Waterloo to collaborate and bring your
-            ideas to life in 36 hours.
+          Tekathon 3.0 is an internal competition that prepares you for the Smart India Hackathon by fostering creativity and problem-solving skills. Last year, over 4,000 students registered for Tekathon 2.0, with more than 600 advancing to the second round. This year, you have the chance to compete, innovate, and win. Get ready to showcase your skills, collaborate with peers, and push the boundaries of what's possible.
           </p>
-          <p className="md:ext-lg text-sm text-[#45474B] mb-6">
+         {/* <p className="md:ext-lg text-sm text-[#45474B] mb-6">
             Hack the North aims to empower students like you who are eager to
             learn and create by providing an environment for you to explore and
             build with workshops, mentorship, and hardware. Let us take care of
             travel, food, and the details, so that you can grow your ideas
             beyond a vision.
-          </p>
+          </p>*/}
+          <a href="https://sih.gov.in/">
           <button className="px-3 py-2 md:px-6 md:py-3  bg-[#495E57] text-white rounded-full">
             Know More
-          </button>
+          </button></a>
         </div>
 
         <div className="md:w-1/2 hidden md:block">
@@ -48,24 +47,22 @@ function About() {
             About Smart India Hackathon 2024
           </h2>
           <h3 className="md:text-2xl text-lg font-semibold text[#1E1E1E] mb-4 font-mono">
-            Government Hackathon
+          Join thousands of students across India as they tackle real-world challenges in the Smart India Hackathon.
           </h3>
           <p className="md:text-lg text-sm text-[#45474B] mb-6">
-            Gather with 1,000 students from around the world and industry
-            leaders at the University of Waterloo to collaborate and bring your
-            ideas to life in 36 hours.
+          SIH is a national initiative designed to empower students to innovate and apply their knowledge in practical ways. By collaborating with industry leaders and government agencies, participants are given the platform to develop creative solutions that address pressing issues. With a focus on critical thinking and hands-on problem-solving, SIH bridges the gap between academic learning and real-world impact.
           </p>
-          <p className="md:text-lg text-sm text-[#45474B] mb-6">
+          {/* {<p className="md:text-lg text-sm text-[#45474B] mb-6">
             Hack the North aims to empower students like you who are eager to
             learn and create by providing an environment for you to explore and
             build with workshops, mentorship, and hardware. Let us take care of
             travel, food, and the details, so that you can grow your ideas
             beyond a vision.
-          </p>
-
+          </p>} */}
+          <a href="https://sih.gov.in/">
           <button className="px-3 py-2 md:px-6 md:py-3 bg-[#495E57] text-white rounded-full">
             Know More
-          </button>
+          </button></a>
         </div>
       </div>
     </section>
