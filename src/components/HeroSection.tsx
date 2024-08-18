@@ -70,12 +70,15 @@ function HeroSection({
 
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
-        if (!isRegister) {
-          navigate("/teampannel"); // Navigate to the team panel upon successful login
-        } else {
-          alert("Registered successfully! Please login.");
-          setIsRegister(false); // Switch to login view after successful registration
-        }
+       
+      }
+      if (isRegister) {
+        alert("Registered successfully! Please login.");
+        setIsRegister(false);
+        // Navigate to the team panel upon successful login
+      } else {
+        navigate("/teampannel");
+         // Switch to login view after successful registration
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -123,15 +126,15 @@ function HeroSection({
                   {isRegister ? (
                     <>
                       <Label htmlFor="teamName">Team Name</Label>
-                      <Input id="teamName" value={formData.teamName} onChange={handleChange} placeholder="Enter your team name" />
+                      <Input id="teamName" value={formData.teamName} onChange={handleChange} placeholder="Enter your team name" required/>
                       <Label htmlFor="name">Leader Name</Label>
-                      <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" />
+                      <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" required/>
                       <Label htmlFor="uid">UID</Label>
-                      <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" />
+                      <Input id="uid" value={formData.uid} onChange={handleChange} placeholder="Enter your UID" required />
                       <Label htmlFor="phoneNumber">Phone Number</Label>
-                      <Input id="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" />
+                      <Input id="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Enter your phone number" required/>
                       <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" />
+                      <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required/>
                       <Label htmlFor="gender">Gender</Label>
                       <select
                         id="gender"
