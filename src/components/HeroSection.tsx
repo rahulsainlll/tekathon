@@ -70,13 +70,14 @@ function HeroSection({
 
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
-        if (isRegister) {
-          navigate("/teampannel"); // Navigate to the team panel upon successful login
-        } else {
+        
+      }
+      if (isRegister) {
           alert("Registered successfully! Please login.");
           setIsRegister(false); // Switch to login view after successful registration
+        } else {
+            navigate("/teampannel"); // Navigate to the team panel upon successful login
         }
-      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || "An error occurred");
