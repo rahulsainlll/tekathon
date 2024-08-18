@@ -9,9 +9,9 @@ const Timeline = () => {
       <ol className="items-center sm:flex">
         <li className="relative mb-6 sm:mb-0">
           <div className="flex items-center">
-            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+            <div className="z-10 flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
               <svg
-                className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300"
+                className="w-5 h-5 text-blue-800 dark:text-blue-300"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -27,19 +27,18 @@ const Timeline = () => {
               Registration Open
             </h3>
             <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-              Released on December 2, 2021
+            19th - 24th August
             </time>
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Get started with dozens of web components and interactive
-              elements.
+            Register for Tekathon 3.0 and secure your spot early.
             </p>
           </div>
         </li>
         <li className="relative mb-6 sm:mb-0">
           <div className="flex items-center">
-            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+            <div className="z-10 flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
               <svg
-                className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300"
+                className="w-5 h-5 text-blue-800 dark:text-blue-300"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -52,22 +51,21 @@ const Timeline = () => {
           </div>
           <div className="mt-3 sm:pe-8">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Round 1 Online
+            Round 1 Results 
             </h3>
             <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-              Released on December 23, 2021
+            31st August - 1st September
             </time>
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Get started with dozens of web components and interactive
-              elements.
+            Check the results to see if you’ve advanced to Round 2.
             </p>
           </div>
         </li>
         <li className="relative mb-6 sm:mb-0">
           <div className="flex items-center">
-            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
+            <div className="z-10 flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
               <svg
-                className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300"
+                className="w-5 h-5 text-blue-800 dark:text-blue-300"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -80,14 +78,13 @@ const Timeline = () => {
           </div>
           <div className="mt-3 sm:pe-8">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Result Round 1
+            Round 2 - Final Round
             </h3>
             <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-              Released on January 5, 2022
+            7th September 2024
             </time>
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-              Get started with dozens of web components and interactive
-              elements.
+            Top qualifiers compete in the final round. Showcase your innovations!
             </p>
           </div>
         </li>

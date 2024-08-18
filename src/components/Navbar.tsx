@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from 'react';
 import img from "./../assets/Intersect.png";
 import culog from "./../assets/culogo.png";
 import AuthDialog from "./AuthDialog";
@@ -19,9 +19,26 @@ const Navbar = ({ scrollToSection, refs }: NavbarProps) => {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
+  const [bgColor, setBgColor] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setBgColor('bg-white shadow-md');
+      } else {
+        setBgColor('');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="w-full relative z-50">
+    <header className={`w-full fixed z-50 transition-colors duration-300 ${bgColor}`}>
       <div className="hidden sm:flex justify-between px-10 py-5 items-center">
         <div className="w-[40%] flex items-center">
           <img className="w-28 h-14" src={culog} alt="not showing" />

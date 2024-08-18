@@ -70,7 +70,7 @@ function HeroSection({
 
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
-        if (!isRegister) {
+        if (isRegister) {
           navigate("/teampannel"); // Navigate to the team panel upon successful login
         } else {
           alert("Registered successfully! Please login.");

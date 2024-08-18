@@ -1,12 +1,12 @@
-import img1 from "/src/assets/collab6.png";
-import img2 from "/src/assets/collab2.jpeg";
+import img2 from "/src/assets/collab1.png";
 import img3 from "/src/assets/collab3.jpeg";
 import img4 from "/src/assets/collab4.png";
 import img5 from "/src/assets/collab5.jpg";
-import img6 from "/src/assets/collab6.png";
 import img7 from "/src/assets/collab2.jpeg";
-
-const images = [img1, img2, img3, img4, img5, img6, img7, img1, img3, img5];
+import img9 from "/src/assets/collab7.jpg";
+import img8 from "/src/assets/collab8.png";
+import img6 from "/src/assets/collab6.png";
+const images = [ img2, img3, img4, img5, img7, img8, img9, img6];
 
 const Collaboration = () => {
   return (
