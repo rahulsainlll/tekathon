@@ -135,9 +135,10 @@ const TeamPanel = () => {
         alert("Added Successfully");
         navigate('/');
 
-      } catch (err) {
-        setError("Failed to post data");
-      } finally {
+      } catch (err: any) {
+        const errorMessage = err.response?.data?.message || 'An error occurred. Please try again later.';
+        alert(errorMessage);
+      }  finally {
         setIsSubmitting(false);
       }
     } else if (file) {
