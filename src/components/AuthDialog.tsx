@@ -41,7 +41,21 @@ const AuthDialog = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
+    const emailDomain = formData.email.split('@')[1];
+    if (isRegister && emailDomain !== 'cuchd.in' && emailDomain !== 'gmail.com') {
+      setError("Email must be from the @cuchd.in or @gmail.com domain.");
+      setLoading(false);
+      return;
+    }
+    
+  
+    // UID validation
+    if (!/^(20|21|22|23)[A-Za-z]{3}\d{4,6}$/.test(formData.uid)) {
+      setError("UID must start with 21, 22, or 23, followed by three characters and 4 to 6 digits.");
+      setLoading(false);
+      return;
+    }
+    
     if (isRegister && !formData.gender) {
       setError("Gender is required.");
       setLoading(false);
