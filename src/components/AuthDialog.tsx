@@ -49,8 +49,8 @@ const AuthDialog = () => {
     }
   
     // UID validation
-    if (formData.uid.length !== 10) {
-      setError("UID must be exactly 10 digits.");
+    if (!/^(21|22|23)[A-Za-z]{3}\d{5}$/.test(formData.uid)) {
+      setError("UID must start with 21, 22, or 23, followed by three characters and five digits.");
       setLoading(false);
       return;
     }
