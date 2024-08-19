@@ -77,6 +77,20 @@
   display: flex;
   animation: scroll 30s linear infinite;
 }
+@media screen and (max-width: 768px) {
+  .slider-track {
+    animation: scrolling 60s linear infinite;
+  }
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-110%);
+  }
+}
 
 .slider-item {
   flex: 0 0 auto;
