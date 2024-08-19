@@ -33,7 +33,10 @@ const AuthDialog = () => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
-
+  const validatePhoneNumber = (phoneNumber:string) => {
+    const phonePattern = /^\d{10}$/;
+    return phonePattern.test(phoneNumber);
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -44,7 +47,12 @@ const AuthDialog = () => {
       setLoading(false);
       return;
     }
-    
+  
+    if (!validatePhoneNumber(formData.phoneNumber)) {
+      setError("Phone number must be exactly 10 digits.");
+      setLoading(false);
+      return;
+    }
     try {
       const endpoint = isRegister ? "/auth/register/lead" : "/auth/login";
       
