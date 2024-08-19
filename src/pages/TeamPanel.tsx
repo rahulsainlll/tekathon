@@ -189,19 +189,12 @@ const TeamPanel = () => {
                 onChange={handleChange}
                 readOnly={!areFieldsEditable}
               />
-              <select
+              <input
                 className="w-full md:flex-1 px-4 py-3 rounded-xl bg-[#4a5568] text-white"
-                name="problem_statement"
-                value={selectedProblemStatement}
-                onChange={handleChange}
+                placeholder="PSID"
+                value=''
+                onChange={handleChange} /
               >
-                <option value="" hidden>
-                  Choose Problem Statement
-                </option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-              </select>
               <select
                 className="w-full md:flex-1 px-4 py-3 rounded-xl bg-[#4a5568] text-white"
                 name="theme"

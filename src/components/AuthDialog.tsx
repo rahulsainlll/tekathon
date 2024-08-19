@@ -48,11 +48,12 @@ const AuthDialog = () => {
       return;
     }
   
-    if (!validatePhoneNumber(formData.phoneNumber)) {
+    if (isRegister && formData.phoneNumber) {
+      if (!validatePhoneNumber(formData.phoneNumber)) {
       setError("Phone number must be exactly 10 digits.");
       setLoading(false);
       return;
-    }
+    }}
     try {
       const endpoint = isRegister ? "/auth/register/lead" : "/auth/login";
       
