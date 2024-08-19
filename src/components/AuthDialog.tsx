@@ -41,7 +41,19 @@ const AuthDialog = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
+    const emailDomain = formData.email.split('@')[1];
+    if (isRegister && emailDomain !== 'cuchd.in') {
+      setError("Email must be from the @cuchd.in domain.");
+      setLoading(false);
+      return;
+    }
+  
+    // UID validation
+    if (formData.uid.length !== 10) {
+      setError("UID must be exactly 10 digits.");
+      setLoading(false);
+      return;
+    }
     if (isRegister && !formData.gender) {
       setError("Gender is required.");
       setLoading(false);
