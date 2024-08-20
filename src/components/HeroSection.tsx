@@ -130,7 +130,7 @@ function HeroSection({
             <DialogTitle className="text-center text-[1.7rem] text-[#c52116]">Important instructions
             </DialogTitle>
           </DialogHeader>
-          <ol className="bold-marker">
+          <ol className="bold-marker px-3">
   <li>If you have registered as team lead you cannot be the team lead of another team or Member of any another team.
   </li>
   <li>Kindly register carefully. In any case once entered details cannot be changed further.
