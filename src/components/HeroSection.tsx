@@ -127,7 +127,7 @@ function HeroSection({
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-[425px] mx-auto mt-10 sm:mt-0 p-4 sm:p-8 max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-center text-[2rem] text-[#c52116]">Important instructions
+            <DialogTitle className="text-center text-[1.7rem] text-[#c52116]">Important instructions
             </DialogTitle>
           </DialogHeader>
           <ol className="bold-marker">
