@@ -2,7 +2,7 @@ import img2 from "/src/assets/collab1.png";
 import img3 from "/src/assets/collab3.jpeg";
 import img4 from "/src/assets/collab4.png";
 import img5 from "/src/assets/collab5.jpg";
-import img7 from "/src/assets/collab2.jpeg";
+import img7 from "/src/assets/collab2.jpg";
 import img9 from "/src/assets/collab7.jpg";
 import img8 from "/src/assets/collab8.png";
 import img6 from "/src/assets/collab6.png";
