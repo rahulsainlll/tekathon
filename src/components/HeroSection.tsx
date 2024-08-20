@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import img from "./../assets/Path.png";
@@ -37,50 +37,59 @@ function HeroSection({
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Move the state outside of handleSubmit
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Automatically open the dialog when the component mounts
+    setIsOpen(true);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
-  const validatePhoneNumber = (phoneNumber:string) => {
+
+  const validatePhoneNumber = (phoneNumber: string) => {
     const phonePattern = /^\d{10}$/;
     return phonePattern.test(phoneNumber);
   };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
     const emailDomain = formData.email.split('@')[1];
     if (isRegister && emailDomain !== 'cuchd.in' && emailDomain !== 'gmail.com') {
       setError("Email must be from the @cuchd.in or @gmail.com domain.");
       setLoading(false);
       return;
     }
-    
-  
+
     // UID validation
     if (!/^(20|21|22|23)[A-Za-z]{3}\d{4,6}$/.test(formData.uid)) {
-      setError("UID must start with 21, 22, or 23, followed by three characters and 4 to 6 digits.");
+      setError("UID must start with 20, 21, 22, or 23, followed by three characters and 4 to 6 digits.");
       setLoading(false);
       return;
     }
-    
+
     if (isRegister && !formData.gender) {
       setError("Gender is required.");
       setLoading(false);
       return;
     }
-  
+
     if (isRegister && formData.phoneNumber) {
       if (!validatePhoneNumber(formData.phoneNumber)) {
-      setError("Phone number must be exactly 10 digits.");
-      setLoading(false);
-      return;
-    }}
+        setError("Phone number must be exactly 10 digits.");
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
       const endpoint = isRegister ? "/auth/register/lead" : "/auth/login";
-      
       const payload = isRegister 
         ? {
             ...formData,
@@ -93,17 +102,13 @@ function HeroSection({
 
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token);
-        
       }
-       
-      
+
       if (isRegister) {
         alert("Registered successfully! Please login.");
         setIsRegister(false);
-        // Navigate to the team panel upon successful login
       } else {
         navigate("/teampannel");
-         // Switch to login view after successful registration
       }
 
     } catch (err) {
@@ -119,6 +124,26 @@ function HeroSection({
 
   return (
     <div className="w-full md:h-[100vh] relative overflow-hidden">
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-[425px] mx-auto mt-10 sm:mt-0 p-4 sm:p-8 max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-center text-[2rem] text-[#c52116]">Important instructions
+            </DialogTitle>
+          </DialogHeader>
+          <ol className="bold-marker">
+  <li>If you have registered as team lead you cannot be the team lead of another team or Member of any another team.
+  </li>
+  <li>Kindly register carefully. In any case once entered details cannot be changed further.
+  </li>
+  <li>Enter the correct gmail id so that any further information regarding the Hackathon can be passed to you later on.
+  </li>
+  <li>Details of team lead and team members must be correct as it will be validated later on.
+  </li>
+  <li>You can submit only 1 ppt for each theme and its only one PS. In Total you can submit 3 for 3 different themes and corresponding PS.</li>
+</ol>
+
+        </DialogContent>
+      </Dialog>
       <Navbar scrollToSection={scrollToSection} refs={refs} />
 
       <img

@@ -13,6 +13,14 @@
   }
 }
 
+.bold-marker {
+  list-style-type: decimal;
+}
+
+.bold-marker li::marker {
+  font-weight: bold;
+}
+
 .card {
   padding: 2em;
 }
