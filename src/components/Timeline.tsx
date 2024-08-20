@@ -24,7 +24,7 @@ const Timeline = () => {
               Registration Open
             </h3>
             <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-              19th - 24th August
+              19th - 25th August
             </time>
             <p className="text-base font-normal text-gray-500 dark:text-gray-400">
               Register for Tekathon 3.0 and secure your spot early.
