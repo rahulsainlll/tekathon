@@ -50,8 +50,8 @@ const AuthDialog = () => {
     
   
     // UID validation
-    if (!/^(20|21|22|23)[A-Za-z]{3}\d{4,6}$/.test(formData.uid)) {
-      setError("UID must start with 21, 22, or 23, followed by three characters and 4 to 6 digits.");
+    if (!/^(20|21|22|23|24)[A-Za-z]{3}\d{4,6}$/.test(formData.uid)) {
+      setError("UID must start with 21, 22, 23 or 24 followed by three characters and 4 to 6 digits.");
       setLoading(false);
       return;
     }

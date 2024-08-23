@@ -73,7 +73,7 @@ const Footer = () => {
               I am in my first year (Fresher). Can I participate?
             </AccordionTrigger>
             <AccordionContent>
-              No, 1st-year students are not allowed in the team.
+              Yes, 1st-year students are allowed in the team.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
